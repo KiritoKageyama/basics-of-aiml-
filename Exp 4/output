@@ -1,0 +1,118 @@
+Experiment 5: Exploratory Data Analysis Using Python with Graphs
+
+Please upload the dataset file:
+california_housing_train.csv
+california_housing_train.csv(text/csv) - 1706430 bytes, last modified: 9/30/2024 - 100% done
+Saving california_housing_train.csv to california_housing_train (1).csv
+
+Dataset 'california_housing_train (1).csv' loaded successfully!
+
+Exploratory Data Analysis (EDA):
+
+1. Number of Rows and Columns:
+Rows: 17000, Columns: 9
+
+2. First Five Rows of the Dataset:
+   longitude  latitude  housing_median_age  total_rooms  total_bedrooms  \
+0    -114.31     34.19                15.0       5612.0          1283.0   
+1    -114.47     34.40                19.0       7650.0          1901.0   
+2    -114.56     33.69                17.0        720.0           174.0   
+3    -114.57     33.64                14.0       1501.0           337.0   
+4    -114.57     33.57                20.0       1454.0           326.0   
+
+   population  households  median_income  median_house_value  
+0      1015.0       472.0         1.4936             66900.0  
+1      1129.0       463.0         1.8200             80100.0  
+2       333.0       117.0         1.6509             85700.0  
+3       515.0       226.0         3.1917             73400.0  
+4       624.0       262.0         1.9250             65500.0  
+
+3. Number of Missing Values per Column:
+longitude             0
+latitude              0
+housing_median_age    0
+total_rooms           0
+total_bedrooms        0
+population            0
+households            0
+median_income         0
+median_house_value    0
+dtype: int64
+
+4. Summary Statistics of Numerical Columns:
+
+Sum of values:
+longitude            -2.032556e+06
+latitude              6.056288e+05
+housing_median_age    4.860190e+05
+total_rooms           4.494230e+07
+total_bedrooms        9.169984e+06
+population            2.430276e+07
+households            8.520773e+06
+median_income         6.602083e+04
+median_house_value    3.524116e+09
+dtype: float64
+
+Average of values:
+longitude               -119.562108
+latitude                  35.625225
+housing_median_age        28.589353
+total_rooms             2643.664412
+total_bedrooms           539.410824
+population              1429.573941
+households               501.221941
+median_income              3.883578
+median_house_value    207300.912353
+dtype: float64
+
+Minimum values:
+longitude              -124.3500
+latitude                 32.5400
+housing_median_age        1.0000
+total_rooms               2.0000
+total_bedrooms            1.0000
+population                3.0000
+households                1.0000
+median_income             0.4999
+median_house_value    14999.0000
+dtype: float64
+
+Maximum values:
+longitude               -114.3100
+latitude                  41.9500
+housing_median_age        52.0000
+total_rooms            37937.0000
+total_bedrooms          6445.0000
+population             35682.0000
+households              6082.0000
+median_income             15.0001
+median_house_value    500001.0000
+dtype: float64
+
+5. Size of the Dataset in Memory (in bytes):
+1224128
+
+6. Data Types of Each Column:
+longitude             float64
+latitude              float64
+housing_median_age    float64
+total_rooms           float64
+total_bedrooms        float64
+population            float64
+households            float64
+median_income         float64
+median_house_value    float64
+dtype: object
+
+
+
+
+
+
+
+
+
+
+
+
+Dataset exported successfully to eda_output_data.csv
