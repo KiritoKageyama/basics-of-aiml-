@@ -1,0 +1,102 @@
+import pandas as pd
+import io
+import matplotlib.pyplot as plt
+import seaborn as sns
+from google.colab import files  # For Google Colab users, to upload the file
+
+# Function to load the dataset from the uploaded file
+def load_dataset(uploaded_file):
+    for file_name in uploaded_file.keys():
+        df = pd.read_csv(io.BytesIO(uploaded_file[file_name]))
+        print(f"\nDataset '{file_name}' loaded successfully!")
+        return df
+
+# Function to display and export the dataset after EDA
+def perform_eda_and_export(df, output_file):
+    if df is not None:
+        # Step 1: Display dataset information
+        print("\nExploratory Data Analysis (EDA):")
+        
+        # 1. Number of Rows and Columns
+        print("\n1. Number of Rows and Columns:")
+        print(f"Rows: {df.shape[0]}, Columns: {df.shape[1]}")
+
+        # 2. First Five Rows
+        print("\n2. First Five Rows of the Dataset:")
+        print(df.head())
+
+        # 3. Total Number of Missing Values per Column
+        print("\n3. Number of Missing Values per Column:")
+        print(df.isnull().sum())
+
+        # 4. Summary of Numerical Columns
+        print("\n4. Summary Statistics of Numerical Columns:")
+        print("\nSum of values:")
+        print(df.select_dtypes(include='number').sum())
+
+        print("\nAverage of values:")
+        print(df.select_dtypes(include='number').mean())
+
+        print("\nMinimum values:")
+        print(df.select_dtypes(include='number').min())
+
+        print("\nMaximum values:")
+        print(df.select_dtypes(include='number').max())
+
+        # 5. Dataset Size in Memory
+        print("\n5. Size of the Dataset in Memory (in bytes):")
+        print(df.memory_usage(deep=True).sum())
+
+        # 6. Data Types of Columns
+        print("\n6. Data Types of Each Column:")
+        print(df.dtypes)
+
+        # Step 2: Visualize Data using Graphs
+
+        # Plot 1: Distribution of numerical columns
+        numerical_cols = df.select_dtypes(include='number').columns
+        for col in numerical_cols:
+            plt.figure(figsize=(8, 6))
+            sns.histplot(df[col], kde=True, bins=30)
+            plt.title(f'Distribution of {col}')
+            plt.xlabel(col)
+            plt.ylabel('Frequency')
+            plt.grid(True)
+            plt.show()
+
+        # Plot 2: Boxplot of numerical columns (for outlier detection)
+        plt.figure(figsize=(12, 6))
+        sns.boxplot(data=df[numerical_cols])
+        plt.title('Boxplot of Numerical Columns')
+        plt.grid(True)
+        plt.show()
+
+        # Plot 3: Correlation heatmap of numerical columns
+        if len(numerical_cols) > 1:
+            plt.figure(figsize=(10, 8))
+            corr_matrix = df[numerical_cols].corr()
+            sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt='.2f')
+            plt.title('Correlation Heatmap of Numerical Columns')
+            plt.show()
+
+        # Step 3: Export dataset
+        df.to_csv(output_file, index=False)
+        print(f"\nDataset exported successfully to {output_file}")
+    else:
+        print("No dataset to analyze.")
+
+# Main execution
+if __name__ == "__main__":
+    print("Experiment 5: Exploratory Data Analysis Using Python with Graphs")
+
+    # Step 1: Upload dataset
+    print("\nPlease upload the dataset file:")
+    uploaded = files.upload()
+
+    # Step 2: Load the dataset
+    df = load_dataset(uploaded)
+
+    # Step 3: Perform EDA and export the dataset
+    output_file = 'eda_output_data.csv'
+    perform_eda_and_export(df, output_file)
+
